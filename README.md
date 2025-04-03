@@ -1,38 +1,36 @@
-# IntroToAI-Assignment-2
+# Tree-Based Search Algorithms for Route Finding
 
-##Tree-Based Search Algorithms for Route Finding
-
-##Introduction
+## Introduction
 
 This project is an implementation of various tree-based search algorithms to solve the Route Finding Problem. The goal is to find optimal paths from an origin node to destination nodes in a 2D graph using both informed and uninformed search methods.
 
-##Features
+## Features
 
 Implemented search algorithms:
 
-*Depth-First Search (DFS)
+- Depth-First Search (DFS)
 
-*Breadth-First Search (BFS)
+- Breadth-First Search (BFS)
 
-*Greedy Best-First Search (GBFS)
+- Greedy Best-First Search (GBFS)
 
-*A* Search (A*)
+- A*Search (A*)
 
-*Custom Uninformed Search (CUS1)
+- Custom Uninformed Search (CUS1)
 
-*Custom Informed Search (CUS2)
+- Custom Informed Search (CUS2)
 
 Reads graph data from structured text files
 
 Supports batch testing via the command line
 
-##Outputs results in a standard format
+## Outputs results in a standard format
 
-File Format
+## File Format
 
 The input files should follow this format:
 
-<pre>
+```
 Nodes:
 1: (4,1)
 2: (2,2)
@@ -49,26 +47,30 @@ Origin:
 Destinations:
 5; 4
   
-</pre>
+```
   
-##Installation
+## Installation
 
-##Clone this repository:
-
-###git clone https://github.com/your-repo-name.git
-###cd your-repo-name
+### Clone this repository:
+```
+git clone https://github.com/your-repo-name.git
+cd your-repo-name
+```
 
 Ensure Python is installed (if using Python).
 
 Install required dependencies if any:
-
+```
 pip install -r requirements.txt
+```
 
-Usage
+## Usage
 
 Run the program using the following command:
 
+```
 python search.py <filename> <method>
+```
 
 Where:
 
@@ -76,29 +78,31 @@ Where:
 
 <method> is one of DFS, BFS, GBFS, A*, CUS1, or CUS2
 
-Example
+## Example
 
 python search.py input.txt A*
 
 Output Format
-
+```
 <filename> <method>
 <goal> <number_of_nodes>
 <path>
-
+```
 Example:
-
+```
 input.txt A*
 5 10
 2 -> 3 -> 5
+```
 
-Testing
+## Testing
 
 At least 10 test cases have been created to cover different scenarios. To run tests:
-
+```
 python test_search.py
+```
 
-Insights & Research
+## Insights & Research
 
 Analyzed efficiency and performance of different search methods.
 
@@ -106,10 +110,10 @@ Explored alternative heuristics and optimizations.
 
 Considered an extended version where all destination nodes must be visited in the shortest path.
 
-##Authors
+## Authors
 
 Team Members: 
-Yasiru Lokesha 
-Prawud Tharinda 
-Justin Tran
-Alex Vrsecky
+- Yasiru Lokesha 
+- Prawud Tharinda 
+- Justin Tran
+- Alex Vrsecky
