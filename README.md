@@ -53,8 +53,8 @@ Destinations:
 
 ### Clone this repository:
 ```
-git clone https://github.com/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/](https://github.com/yasirulokesha/IntroToAI-Assignment-2.git
+cd IntroToAI-Assignment-2
 ```
 
 Ensure Python is installed (if using Python).
@@ -114,6 +114,6 @@ Considered an extended version where all destination nodes must be visited in th
 
 Team Members: 
 - Yasiru Lokesha 
-- Prawud Tharinda 
+- Prawud Rathnayake 
 - Justin Tran
 - Alex Vrsecky
