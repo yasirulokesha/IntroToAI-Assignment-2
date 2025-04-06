@@ -1,6 +1,6 @@
 import sys
 import time
-from problem_parser import parse_problem_file
+from Problem import parse_problem_file
 from search_algorithms import dfs, bfs, gbfs, astar, custom1, custom2
 
 def main():

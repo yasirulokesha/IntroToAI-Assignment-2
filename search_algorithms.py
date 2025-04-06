@@ -1,6 +1,6 @@
 from collections import deque
 import heapq
-from node import Node
+from graph import Node
 
 def dfs(graph):
     """
