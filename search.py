@@ -1,68 +1,50 @@
 import sys
-import heapq
-import re
+import time
+from problem_parser import parse_problem_file
+from search_algorithms import dfs, bfs, gbfs, astar, custom1, custom2
 
-class Graph:
-    def __init__(self):
-        self.nodes = {}  # Store coordinates {node: (x, y)}
-        self.edges = {}  # Adjacency list {node: [(neighbor, cost), ...]}
-        self.origin = None
-        self.destinations = set()
+def main():
+    # Check if the problem file and the algorithm are provided
+    if len(sys.argv) != 3:
+        print("Usage: python search.py <filename> <method>")
+        sys.exit(1)
+    
+    # Get the filename and method from command line argument
+    filename = sys.argv[1]
+    method = sys.argv[2].upper()
+    
+    # Parse the problem file
+    try:
+        problem = parse_problem_file(filename)
+    except Exception as e:
+        print(f"Error parsing problem file: {e}")
+        sys.exit(1)
+    
+    # Choose the appropriate search algorithm
+    if method == "DFS":
+        goal_node, path = dfs(problem)
+    elif method == "BFS":
+        goal_node, path = bfs(problem)
+    elif method == "GBFS":
+        goal_node, path = gbfs(problem)
+    elif method == "AS":
+        goal_node, path = astar(problem)
+    elif method == "CUS1":
+        goal_node, path = custom1(problem)
+    elif method == "CUS2":
+        goal_node, path = custom2(problem)
+    else:
+        print(f"Unknown method: {method}")
+        print("Available methods: DFS, BFS, GBFS, AS, CUS1, CUS2")
+        sys.exit(1)
+    
+    # Print the result in the required format
+    if goal_node:
+        print(f"{filename} {method}")
+        print(f"{goal_node.id} {goal_node.nodes_created}")
+        print(" ".join(str(node_id) for node_id in path))
+    else:
+        print(f"No solution found for {filename} using {method}")
 
-    def add_node(self, node, x, y):
-        self.nodes[node] = (x, y)
-        self.edges[node] = []
-
-    def add_edge(self, start, end, cost):
-        self.edges[start].append((end, cost))
-
-    def parse_file(self, filename):
-        with open(PathFinder-test.txt, 'r') as f:
-            lines = f.readlines()
-
-        section = None
-        for line in lines:
-            line = line.strip()
-            if not line:
-                continue
-
-            if line.startswith("Nodes:"):
-                section = "nodes"
-                continue
-            elif line.startswith("Edges:"):
-                section = "edges"
-                continue
-            elif line.startswith("Origin:"):
-                section = "origin"
-                continue
-            elif line.startswith("Destinations:"):
-                section = "destinations"
-                continue
-
-            if section == "nodes":
-                match = re.match(r"(\d+): \((\d+),(\d+)\)", line)
-                if match:
-                    node, x, y = map(int, match.groups())
-                    self.add_node(node, x, y)
-
-            elif section == "edges":
-                match = re.match(r"\((\d+),(\d+)\): (\d+)", line)
-                if match:
-                    start, end, cost = map(int, match.groups())
-                    self.add_edge(start, end, cost)
-
-            elif section == "origin":
-                self.origin = int(line)
-
-            elif section == "destinations":
-                self.destinations = set(map(int, line.split(";")))
-
-    def __str__(self):
-        return f"Nodes: {self.nodes}\nEdges: {self.edges}\nOrigin: {self.origin}\nDestinations: {self.destinations}"
-
-
-# Example usage:
 if __name__ == "__main__":
-    graph = Graph()
-    graph.parse_file("input.txt")  # Replace with actual file name
-    print(graph)
+    main()
