@@ -16,7 +16,7 @@ class Node:
 class Graph:
     # Create a graph with nodes and edges
     def __init__(self):
-        self.nodes = {}  
+        self.nodes = {} 
         self.edges = {} 
     
     # Add a node to the graph

@@ -1,7 +1,7 @@
 import sys
 import time
 from problem import read_file
-from algorithms.algorithms import dfs
+# from algorithms.algorithms import dfs
 
 # Check the problem file and the algorithm 
 if len(sys.argv) != 3:
@@ -22,7 +22,7 @@ except Exception as e:
 # Choose the appropriate search algorithm
 if method == "DFS":
     print("Searching the path using Depth-First Search...")
-    goal_node, path = dfs(problem)
+    # goal_node, path = dfs(problem)
 elif method == "BFS":
     print("Searching the path using Bread-First Search...")
     # goal_node, path = bfs(problem)

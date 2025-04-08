@@ -1,17 +1,18 @@
 from collections import defaultdict
 import re
 import sys
+from graph import Node, Graph
 
 # Represents a route finding problem
 class Problem:
-    def __init__(self, graph, origin, destinations):
+    def __init__(self, graph, origin, destination):
         self.graph = graph
         self.origin = origin
-        self.destinations = destinations
+        self.destination = destination
        
     # Check if a node is a destination
     def is_goal(self, node_id):
-        return node_id in self.destinations
+        return node_id in self.destination
     
     
 # Read the file and make a Problem class to proceed
@@ -25,6 +26,9 @@ def read_file(filename):
     section_names = ["Nodes:", "Edges:", "Origin:", "Destinations:"]
     current_section = None
     section_content = []
+    
+    # Make a graph for the problem
+    problem_graph = Graph()
     
     lines = content.split('\n')
     for line in lines:
@@ -45,33 +49,24 @@ def read_file(filename):
         sections[current_section] = '\n'.join(section_content)
     
     # Extract nodes
-    nodes = set()
     if "Nodes:" in sections:
         node_lines = sections["Nodes:"].split('\n')
         for line in node_lines:
             if ":" in line:
                 node_id = line.split(":")[0].strip()
-                nodes.add(node_id)
+                node_x, node_y = line.split(":")[1].strip().strip("()").split(",")
+                problem_graph.add_node(node_id, int(node_x), int(node_y))
     
     # Extract edges
     # Edges are dicts that have the node id as key, and a list of connected nodes as value eg {'1' : ['2', '3']}
-    edges = defaultdict(list)
     if "Edges:" in sections:
         edge_lines = sections["Edges:"].split('\n')
         for line in edge_lines:
-            match = re.match(r'^\((\d+),(\d+)\):\s*\d+$', line)
-            if match:
-                a, b = match.group(1), match.group(2)
-                # treat edges as undirected
-                if b not in edges[a]:
-                    edges[a].append(b)
-                if a not in edges[b]:
-                    edges[b].append(a)
-    
-    # Sort edges for tie-breaking
-    for node in edges:
-        edges[node] = sorted(edges[node], key=lambda x: int(x))
-    
+            line = line.strip("()").split(",")
+            node_from, node_to = line[0], line[1].split(":")[0].strip("()")
+            cost = int(line[1].split(":")[1].strip())
+            problem_graph.add_edge(node_from, node_to, cost)
+            
     # Extract origin
     origin = None
     if "Origin:" in sections:
@@ -91,10 +86,8 @@ def read_file(filename):
                     # Take only the first word in case there are comments
                     dest = part.split()[0].strip()
                     destinations.add(dest)
-                    
-    print("nodes: " + str(nodes))
-    print("Edges: " + str(edges))
+ 
     print("Origin: " + str(origin))
     print("Destination: " + str(destinations))
     
-    return Problem(graph, origin, destinations)
+    return Problem(problem_graph, origin, destinations)
