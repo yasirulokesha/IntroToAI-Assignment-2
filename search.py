@@ -1,7 +1,7 @@
 import sys
 import time
 from problem import read_file
-from search_algorithms import dfs, bfs, gbfs, a_star, custom1, custom2
+from algorithms.algorithms import dfs
 
 # Check the problem file and the algorithm 
 if len(sys.argv) != 3:

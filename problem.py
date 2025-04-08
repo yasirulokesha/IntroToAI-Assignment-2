@@ -13,6 +13,8 @@ class Problem:
     def is_goal(self, node_id):
         return node_id in self.destinations
     
+    
+# Read the file and make a Problem class to proceed
 def read_file(filename):
     
     with open(filename, 'r') as f:
@@ -95,4 +97,4 @@ def read_file(filename):
     print("Origin: " + str(origin))
     print("Destination: " + str(destinations))
     
-    return nodes, edges, origin, destinations
+    return Problem(graph, origin, destinations)
