@@ -5,16 +5,11 @@ from graph import Node, Graph
 
 # Represents a route finding problem
 class Problem:
-    def __init__(self, graph, origin, destination):
+    def __init__(self, graph, origin, destinations):
         self.graph = graph
         self.origin = origin
-        self.destination = destination
-       
-    # Check if a node is a destination
-    def is_goal(self, node_id):
-        return node_id in self.destination
-    
-    
+        self.destinations = destinations
+
 # Read the file and make a Problem class to proceed
 def read_file(filename):
     
@@ -86,8 +81,5 @@ def read_file(filename):
                     # Take only the first word in case there are comments
                     dest = part.split()[0].strip()
                     destinations.add(dest)
- 
-    print("Origin: " + str(origin))
-    print("Destination: " + str(destinations))
-    
+
     return Problem(problem_graph, origin, destinations)

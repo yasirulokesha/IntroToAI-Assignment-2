@@ -15,6 +15,11 @@ method = sys.argv[2].upper()
 # Parse the problem file
 try:
     problem = read_file(filename)
+    goal_node = problem.destinations
+       
+    # Print the graph 
+    problem.graph.print_graph()
+    
 except Exception as e:
     print(f"Error parsing problem file: {e}")
     sys.exit(1)
@@ -48,7 +53,7 @@ else:
 # Print the result in the required format
 if goal_node:
     print(f"{filename} {method}")
-    print(f"{goal_node.id} {goal_node.nodes_created}")
-    print(" ".join(str(node_id) for node_id in path))
+    print(f"{goal_node} ")
+    # print(" ".join(str(node_id) for node_id in path))
 else:
     print(f"No solution found for {filename} using {method}")

@@ -31,17 +31,13 @@ class Graph:
             self.edges[from_node] = []
         self.edges[from_node].append((to_node, cost))
     
-    # Get neighbors of a node, sorted by node ID
-    def get_neighbors(self, node_id):
-        if node_id in self.edges:
-            # Sort neighbors by node ID in ascending order
-            return sorted(self.edges[node_id], key=lambda x: x[0])
-        return []
-    
-    # Get the cost of an edge
-    def get_edge_cost(self, from_node, to_node):
-        for neighbor, cost in self.edges.get(from_node, []):
-            if neighbor == to_node:
-                return cost
-        # Return infinity if there's no direct edge
-        return float('inf')  
+    # Print the graph (NODES + EDGES)
+    def print_graph(self):
+        print("Nodes:")
+        for node_id, node in self.nodes.items():
+            print(f"  Node {node_id}: ({node.x}, {node.y})")
+        
+        print("\nEdges:")
+        for from_node, neighbors in self.edges.items():
+            for (to_node, cost) in neighbors:
+                print(f"  {from_node} -> {to_node} (Cost: {cost})")
