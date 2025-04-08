@@ -1,7 +1,7 @@
 from collections import deque
 from ..graph import Node
 
-def bfs(graph):
+def bfs_fun(graph):
     """
     Breadth-First Search algorithm.
     

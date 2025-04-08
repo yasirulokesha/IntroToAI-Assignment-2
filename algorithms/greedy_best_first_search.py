@@ -1,7 +1,7 @@
 from collections import deque
 from ..graph import Node
 
-def gbfs_fun(graph):
+def gbfs(graph):
     """
     Greedy Best-First Search algorithm.
     Uses heuristic (Euclidean distance to nearest destination) to guide search.
