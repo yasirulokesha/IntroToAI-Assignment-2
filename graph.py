@@ -2,11 +2,10 @@ import math
 
 class Node:
     # Represents a node in the graph with coordinates
-    def __init__(self, state, action, parent, id, x, y):
+    def __init__(self, id, x, y, state=None, parent=None):
         self.id = id
         self.x = x
         self.y = y
-        self.action = action
         self.state = state
         self.parent = parent
     
@@ -15,7 +14,7 @@ class Node:
         return math.sqrt((self.x - other_node.x)**2 + (self.y - other_node.y)**2)
 
 class Graph:
-    # Represents the graph with nodes and edges
+    # Create a graph with nodes and edges
     def __init__(self):
         self.nodes = {}  
         self.edges = {} 

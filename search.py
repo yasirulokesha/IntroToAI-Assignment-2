@@ -1,50 +1,54 @@
 import sys
 import time
-from Problem import parse_problem_file
-from search_algorithms import dfs, bfs, gbfs, astar, custom1, custom2
+from problem import read_file
+from search_algorithms import dfs, bfs, gbfs, a_star, custom1, custom2
 
-def main():
-    # Check if the problem file and the algorithm are provided
+# Check the problem file and the algorithm 
+if len(sys.argv) != 3:
+    print("Usage: python search.py <filename> <method>")
+    sys.exit(1)
+
+# Get the filename and method from command line argument
+filename = sys.argv[1]
+method = sys.argv[2].upper()
+
+# Parse the problem file
+try:
+    problem = read_file(filename)
+except Exception as e:
+    print(f"Error parsing problem file: {e}")
+    sys.exit(1)
+
+# Choose the appropriate search algorithm
+if method == "DFS":
+    print("Searching the path using Depth-First Search...")
+    goal_node, path = dfs(problem)
+elif method == "BFS":
+    print("Searching the path using Bread-First Search...")
+    # goal_node, path = bfs(problem)
+elif method == "GBFS":
+    print("Searching the path using Greedy Best-First  Search...")
+    # goal_node, path = gbfs(problem)
+elif method == "AS":
+    print("Searching the path using Greedy A*('"'A-Star'"') Search...")
+    # goal_node, path = a_star(problem)        
+elif method == "CUS1":
+    print("Searching the path using Greedy Custom 1 Search...")
+    # goal_node, path = custom1(problem)
+elif method == "CUS2":
+    print("Searching the path using Greedy Custom 2 Search...")
+    # goal_node, path = custom2(problem)
+else:
+    print(f"Unknown method: {method}")
+    print("Available methods: DFS, BFS, GBFS, AS, CUS1, CUS2")
     if len(sys.argv) != 3:
         print("Usage: python search.py <filename> <method>")
         sys.exit(1)
-    
-    # Get the filename and method from command line argument
-    filename = sys.argv[1]
-    method = sys.argv[2].upper()
-    
-    # Parse the problem file
-    try:
-        problem = parse_problem_file(filename)
-    except Exception as e:
-        print(f"Error parsing problem file: {e}")
-        sys.exit(1)
-    
-    # Choose the appropriate search algorithm
-    if method == "DFS":
-        goal_node, path = dfs(problem)
-    elif method == "BFS":
-        goal_node, path = bfs(problem)
-    elif method == "GBFS":
-        goal_node, path = gbfs(problem)
-    elif method == "AS":
-        goal_node, path = astar(problem)
-    elif method == "CUS1":
-        goal_node, path = custom1(problem)
-    elif method == "CUS2":
-        goal_node, path = custom2(problem)
-    else:
-        print(f"Unknown method: {method}")
-        print("Available methods: DFS, BFS, GBFS, AS, CUS1, CUS2")
-        sys.exit(1)
-    
-    # Print the result in the required format
-    if goal_node:
-        print(f"{filename} {method}")
-        print(f"{goal_node.id} {goal_node.nodes_created}")
-        print(" ".join(str(node_id) for node_id in path))
-    else:
-        print(f"No solution found for {filename} using {method}")
 
-if __name__ == "__main__":
-    main()
+# Print the result in the required format
+if goal_node:
+    print(f"{filename} {method}")
+    print(f"{goal_node.id} {goal_node.nodes_created}")
+    print(" ".join(str(node_id) for node_id in path))
+else:
+    print(f"No solution found for {filename} using {method}")

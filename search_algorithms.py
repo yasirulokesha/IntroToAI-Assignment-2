@@ -243,7 +243,7 @@ def a_star(graph):
     return None, nodes_created, []
 
 
-def cus1(graph):
+def custom1(graph):
     """
     Custom Search 1: Uniform Cost Search (Dijkstra's Algorithm)
     An uninformed search strategy that finds the lowest-cost path.
@@ -311,7 +311,7 @@ def cus1(graph):
     return None, nodes_created, []
 
 
-def cus2(graph):
+def custom2(graph):
     """
     Custom Search 2: Bidirectional A* Search
     An informed search that searches simultaneously from the start and goal nodes.
