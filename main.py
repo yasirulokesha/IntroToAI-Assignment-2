@@ -5,6 +5,7 @@ from algorithms.breadth_first_search import bfs
 from algorithms.a_star_search import a_star
 from algorithms.greedy_best_first_search import gbfs
 from algorithms.custom1 import custom_search_1
+from algorithms.custom2 import custom_search_2
 
 # Check the problem file and the algorithm 
 if len(sys.argv) != 3:
@@ -45,12 +46,11 @@ elif method == "AS":
         
 elif method == "CUS1":
     print("Searching the path using Custom 1(Uniform Cost) Search...")
-    # path, goal_node = custom1(problem)
     path, goal_node = custom_search_1(problem)
     
 elif method == "CUS2":
-    print("Searching the path using Greedy Custom 2 Search...")
-    # path, goal_node = custom2(problem)
+    print("Searching the path using Custom 2 (Recursive Best First Search) Search...")
+    path, goal_node = custom_search_2(problem)
     
 else:
     print(f"Unknown method: {method}")
