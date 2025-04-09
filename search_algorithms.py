@@ -3,8 +3,6 @@ import heapq
 from graph import Node
 
 
-
-
 def bfs(graph):
     """
     Breadth-First Search algorithm.
