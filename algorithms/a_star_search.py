@@ -1,7 +1,7 @@
 import heapq
 
+# Performs A* Search with tie-breaking rules.
 def a_star(problem):
-    """Performs A* Search with tie-breaking rules."""
     graph = problem.graph
     start = problem.origin
     goals = problem.destinations
