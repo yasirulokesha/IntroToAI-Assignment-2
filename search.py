@@ -2,6 +2,7 @@ import sys
 import time
 from problem import read_file
 from algorithms.depth_first_search import dfs
+from algorithms.breadth_first_search import bfs
 
 # Check the problem file and the algorithm 
 if len(sys.argv) != 3:
@@ -30,7 +31,7 @@ if method == "DFS":
     goal_node, path = dfs(problem)
 elif method == "BFS":
     print("Searching the path using Bread-First Search...")
-    # goal_node, path = bfs(problem)
+    goal_node, path = bfs(problem)
 elif method == "GBFS":
     print("Searching the path using Greedy Best-First  Search...")
     # goal_node, path = gbfs(problem)
