@@ -3,6 +3,8 @@ from problem import read_file
 from algorithms.depth_first_search import dfs
 from algorithms.breadth_first_search import bfs
 from algorithms.a_star_search import a_star
+from algorithms.greedy_best_first_search import gbfs
+from algorithms.custom1 import cus1
 
 # Check the problem file and the algorithm 
 if len(sys.argv) != 3:
@@ -17,7 +19,6 @@ method = sys.argv[2].upper()
 try:
     problem = read_file(filename)
     goal_node = problem.destinations
-       
     # Print the graph 
     # problem.graph.print_graph()
     
@@ -36,7 +37,7 @@ elif method == "BFS":
     
 elif method == "GBFS":
     print("Searching the path using Greedy Best-First  Search...")
-    # path, goal_node = gbfs(problem)
+    path, goal_node = gbfs(problem)
     
 elif method == "AS":
     print("Searching the path using Greedy A*('"'A-Star'"') Search...")
@@ -44,7 +45,7 @@ elif method == "AS":
         
 elif method == "CUS1":
     print("Searching the path using Greedy Custom 1 Search...")
-    # path, goal_node = custom1(problem)
+    path, goal_node = cus1(problem)
     
 elif method == "CUS2":
     print("Searching the path using Greedy Custom 2 Search...")
@@ -60,15 +61,9 @@ else:
 # Print the result in the required format
 if goal_node:
     print(f"{filename} {method}")
-    
     print(
-        f"\n********* Search Results *********\nFound Goal: {goal_node}\nNode Visited: ", len(path) ,"\nPath:" 
+        f"\n********* Search Results *********\nFound Goal:\t {goal_node}\nNode Visited:\t {len(path)}\nPath: \t\t {' -> '.join(path)}"
     )
-    
-    for i in range(len(path) - 1):
-            print(path[i],end=" -> ")
-            
-    print(path[len(path)-1], "\n")
         
 else:
     print(f"No solution found for {filename} using {method}")

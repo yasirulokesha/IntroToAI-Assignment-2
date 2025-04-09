@@ -1,2 +1,2 @@
-def custom_search_1(problem):
-    print("CUS1") 
+def cus1(problem):
+    return problem

@@ -1,7 +1,7 @@
 import sys
 
+# Performs Depth-First Search (DFS) with tie-breaking rules.
 def dfs(problem):
-    """Performs Depth-First Search (DFS) with tie-breaking rules."""
     graph = problem.graph
     start = problem.origin
     goals = problem.destinations
