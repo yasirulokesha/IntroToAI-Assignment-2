@@ -1,7 +1,7 @@
 from collections import deque
 from ..graph import Node
 
-def a_star(graph):
+def a_star_fun(graph):
     """
     A* Search algorithm.
     Uses path cost plus heuristic to guide search.
