@@ -1,7 +1,7 @@
 import sys
 import time
 from problem import read_file
-from algorithms.depth_first_search import dfs_fun
+from algorithms.depth_first_search import dfs_fun as dfs
 
 # Check the problem file and the algorithm 
 if len(sys.argv) != 3:
@@ -17,8 +17,10 @@ try:
     problem = read_file(filename)
     goal_node = problem.destinations
        
-    # Print the graph 
-    # problem.graph.print_graph()
+    # Print the problem nodes and edges 
+    problem.graph.print_graph()
+    print("Origin: ",problem.origin)
+    print("Destinations: ", problem.destinations)
     
 except Exception as e:
     print(f"Error parsing problem file: {e}")
@@ -27,7 +29,7 @@ except Exception as e:
 # Choose the appropriate search algorithm
 if method == "DFS":
     print("Searching the path using Depth-First Search...")
-    goal_node, path = dfs_fun(problem)
+    goal_node, path = dfs(problem)
     
 elif method == "BFS":
     print("Searching the path using Bread-First Search...")
@@ -52,9 +54,9 @@ else:
         sys.exit(1)
 
 # Print the result in the required format
-if True:
-    print(f"{filename} {method}")
-    print(f"{goal_node} ")
-    print(" ".join(str(node_id) for node_id in path))
-else:
-    print(f"No solution found for {filename} using {method}")
+# if True:
+#     print(f"{filename} {method}")
+#     print(f"{goal_node} ")
+#     print(" ".join(str(node_id) for node_id in path))
+# else:
+#     print(f"No solution found for {filename} using {method}")

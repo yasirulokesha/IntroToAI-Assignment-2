@@ -1,9 +1,9 @@
-from algorithms.depth_first_search import dfs_fun
-from algorithms.breadth_first_search import bfs_fun
-from algorithms.a_star_search import a_star_fun
-from algorithms.greedy_best_first_search import gbfs_fun
-from algorithms.custom1 import custom_search_1
-from algorithms.custom2 import custom_search_2
+from depth_first_search import dfs_fun
+from breadth_first_search import bfs_fun
+from a_star_search import a_star_fun
+from greedy_best_first_search import gbfs_fun
+from custom1 import custom_search_1
+from custom2 import custom_search_2
 
 def dfs(problem):
     dfs_fun(problem)
