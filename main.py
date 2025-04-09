@@ -3,6 +3,7 @@ from problem import read_file
 from algorithms.depth_first_search import dfs
 from algorithms.breadth_first_search import bfs
 from algorithms.a_star_search import a_star
+from algorithms.greedy_best_first_search import gbfs
 from algorithms.custom1 import custom_search_1
 
 # Check the problem file and the algorithm 
