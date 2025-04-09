@@ -1,8 +1,6 @@
 import sys
 import heapq
 import math
-from graph import Graph
-from read_file import read_file  # Import function to parse input files
 
 def euclidean_distance(node1, node2, graph):
     """Computes Euclidean distance between two nodes."""

@@ -29,21 +29,27 @@ except Exception as e:
 if method == "DFS":
     print("Searching the path using Depth-First Search...")
     path, goal_node = dfs(problem)
+    
 elif method == "BFS":
     print("Searching the path using Bread-First Search...")
     path, goal_node = bfs(problem)
+    
 elif method == "GBFS":
     print("Searching the path using Greedy Best-First  Search...")
     # path, goal_node = gbfs(problem)
+    
 elif method == "AS":
     print("Searching the path using Greedy A*('"'A-Star'"') Search...")
-    path, goal_node = a_star(problem)        
+    path, goal_node = a_star(problem)    
+        
 elif method == "CUS1":
     print("Searching the path using Greedy Custom 1 Search...")
     # path, goal_node = custom1(problem)
+    
 elif method == "CUS2":
     print("Searching the path using Greedy Custom 2 Search...")
     # path, goal_node = custom2(problem)
+    
 else:
     print(f"Unknown method: {method}")
     print("Available methods: DFS, BFS, GBFS, AS, CUS1, CUS2")
@@ -64,7 +70,5 @@ if goal_node:
             
     print(path[len(path)-1], "\n")
         
-        
-    # print(" ".join(str(node_id) for node_id in path))
 else:
     print(f"No solution found for {filename} using {method}")
