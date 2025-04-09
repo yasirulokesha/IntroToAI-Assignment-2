@@ -1,66 +1,37 @@
-from collections import deque
-from ..graph import Node
+import sys
+import heapq
+import math
 
-def gbfs_fun(graph):
-    """
-    Greedy Best-First Search algorithm.
-    Uses heuristic (Euclidean distance to nearest destination) to guide search.
-    
-    Returns:
-        (goal_node, num_nodes_created, path)
-    """
-    # Initialize
-    start_node = Node(graph.origin)
-    if graph.is_destination(start_node.state):
-        return start_node.state, 1, start_node.get_path()
-    
-    # Calculate heuristic for start node
-    start_node.f_value = min(graph.euclidean_distance(start_node.state, dest) 
-                             for dest in graph.destinations)
-    
-    # Use a priority queue for GBFS
-    frontier = [start_node]
+def euclidean_distance(node1, node2, graph):
+    """Computes Euclidean distance between two nodes."""
+    x1, y1 = graph.nodes[node1]
+    x2, y2 = graph.nodes[node2]
+    return math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
+
+def gbfs(problem):
+    """Performs Greedy Best-First Search (GBFS) with tie-breaking rules."""
+    graph = problem.graph
+    start = problem.origin
+    goals = problem.destinations
+
+    # Priority queue: (h, node, path)
+    priority_queue = [(0, start, [start])]  # (h, node, path)
     visited = set()
-    nodes_created = 1
-    
-    while frontier:
-        # Get the node with lowest heuristic value
-        current = heapq.heappop(frontier)
-        
-        # Skip if already visited
-        if current.state in visited:
-            continue
-        
-        # Mark as visited
-        visited.add(current.state)
-        
-        # Get neighbors, sorted in ascending order
-        neighbors = graph.get_neighbors(current.state)
-        
-        # Add neighbors to priority queue
-        for neighbor in neighbors:
-            if neighbor not in visited:
-                # Get edge cost
-                edge_cost = graph.get_edge_cost(current.state, neighbor)
-                # Create new node
-                new_node = Node(
-                    state=neighbor,
-                    parent=current,
-                    action=f"{current.state}->{neighbor}",
-                    path_cost=current.path_cost + edge_cost
-                )
-                nodes_created += 1
-                
-                # Check if this is a destination
-                if graph.is_destination(neighbor):
-                    return neighbor, nodes_created, new_node.get_path()
-                
-                # Calculate heuristic (minimum distance to any destination)
-                new_node.f_value = min(graph.euclidean_distance(neighbor, dest) 
-                                       for dest in graph.destinations)
-                
-                # Add to priority queue
-                heapq.heappush(frontier, new_node)
-    
-    # No solution found
-    return None, nodes_created, []
+
+    while priority_queue:
+        h, node, path = heapq.heappop(priority_queue)  # Expand lowest heuristic value
+
+        if node in goals:
+            return path, len(path)  # Goal reached, return path and number of nodes visited
+
+        if node not in visited:
+            visited.add(node)
+
+            # Get neighbors, sort them in ascending order
+            neighbors = sorted(graph.edges[node], key=lambda x: x[0])  # Sort by node ID
+            for neighbor, edge_cost in neighbors:
+                if neighbor not in visited:
+                    h_new = min(euclidean_distance(neighbor, goal, graph) for goal in goals)  # Heuristic
+                    heapq.heappush(priority_queue, (h_new, neighbor, path + [neighbor]))
+
+    return None, float("inf")  # No path found
