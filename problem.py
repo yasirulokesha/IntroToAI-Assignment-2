@@ -58,7 +58,7 @@ def read_file(filename):
         edge_lines = sections["Edges:"].split('\n')
         for line in edge_lines:
             line = line.strip("()").split(",")
-            node_from, node_to = int(line[0]), int(line[1].split(":")[0].strip("()"))
+            node_from, node_to = line[0], line[1].split(":")[0].strip("()")
             cost = int(line[1].split(":")[1].strip())
             problem_graph.add_edge(node_from, node_to, cost)
             
