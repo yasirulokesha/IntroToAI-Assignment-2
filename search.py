@@ -1,8 +1,8 @@
 import sys
-import time
 from problem import read_file
 from algorithms.depth_first_search import dfs
 from algorithms.breadth_first_search import bfs
+from algorithms.a_star_search import a_star
 
 # Check the problem file and the algorithm 
 if len(sys.argv) != 3:
@@ -19,7 +19,7 @@ try:
     goal_node = problem.destinations
        
     # Print the graph 
-    problem.graph.print_graph()
+    # problem.graph.print_graph()
     
 except Exception as e:
     print(f"Error parsing problem file: {e}")
@@ -28,22 +28,22 @@ except Exception as e:
 # Choose the appropriate search algorithm
 if method == "DFS":
     print("Searching the path using Depth-First Search...")
-    goal_node, path = dfs(problem)
+    path, goal_node = dfs(problem)
 elif method == "BFS":
     print("Searching the path using Bread-First Search...")
-    goal_node, path = bfs(problem)
+    path, goal_node = bfs(problem)
 elif method == "GBFS":
     print("Searching the path using Greedy Best-First  Search...")
-    # goal_node, path = gbfs(problem)
+    # path, goal_node = gbfs(problem)
 elif method == "AS":
     print("Searching the path using Greedy A*('"'A-Star'"') Search...")
-    # goal_node, path = a_star(problem)        
+    path, goal_node = a_star(problem)        
 elif method == "CUS1":
     print("Searching the path using Greedy Custom 1 Search...")
-    # goal_node, path = custom1(problem)
+    # path, goal_node = custom1(problem)
 elif method == "CUS2":
     print("Searching the path using Greedy Custom 2 Search...")
-    # goal_node, path = custom2(problem)
+    # path, goal_node = custom2(problem)
 else:
     print(f"Unknown method: {method}")
     print("Available methods: DFS, BFS, GBFS, AS, CUS1, CUS2")
@@ -54,7 +54,17 @@ else:
 # Print the result in the required format
 if goal_node:
     print(f"{filename} {method}")
-    print(f"{goal_node} ")
+    
+    print(
+        f"\n********* Search Results *********\nFound Goal: {goal_node}\nNode Visited: ", len(path) ,"\nPath:" 
+    )
+    
+    for i in range(len(path) - 1):
+            print(path[i],end=" -> ")
+            
+    print(path[len(path)-1], "\n")
+        
+        
     # print(" ".join(str(node_id) for node_id in path))
 else:
     print(f"No solution found for {filename} using {method}")
