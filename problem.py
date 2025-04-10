@@ -42,13 +42,6 @@ def read_file(filename):
     # Add the last section
     if current_section and section_content:
         sections[current_section] = '\n'.join(section_content)
-        
-        
-    # Check if all required sections are present, print error if missing
-    for section in section_names:
-        if section not in sections:
-            print(f"ERROR: Missing {section} section in the input file.")
-            sys.exit(1)  # Exit if required section is missing
     
     # Extract nodes
     if "Nodes:" in sections:
@@ -74,16 +67,7 @@ def read_file(filename):
     if "Origin:" in sections:
         origin_text = sections["Origin:"].strip()
         if origin_text:
-            # Check if there is more than one origin
-            origin_list = origin_text.split(';')
-            if len(origin_list) > 1:
-                print("ERROR: Multiple origins specified. There must be exactly one origin.")
-                sys.exit(1)  # Exit if there are multiple origins
-            origin = origin_list[0].strip()
-            
-    if not origin:
-        print("ERROR: Missing or invalid origin.")
-        sys.exit(1)
+            origin = origin_text
     
     # Extract destinations
     destinations = set()

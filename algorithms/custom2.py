@@ -2,6 +2,7 @@ import math
 
 #performs Recursive Best-First Search (RBFS)
 def custom_search_2(problem):
+    
     graph = problem.graph
     start = problem.origin
     goals = problem.destinations
@@ -45,7 +46,7 @@ def custom_search_2(problem):
             neighbors[0] = (best_neighbor, best_g, new_f)
             neighbors.sort(key=lambda x: (x[2], x[0]))
 
-        return None, math.inf  # No solution found
+        return None, float('inf')  # No solution found
 
     # return to starting node
     path, cost = rbfs(start, [start], 0, math.inf)

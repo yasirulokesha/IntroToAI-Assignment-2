@@ -19,16 +19,14 @@ method = sys.argv[2].upper()
 # Parse the problem file
 try:
     problem = read_file(filename)
+    
     goal_node = problem.destinations
     # Print the graph 
     # problem.graph.print_graph()
-    
 except Exception as e:
     print(f"Error parsing problem file: {e}")
     sys.exit(1)
     
-
-
 # Choose the appropriate search algorithm
 if method == "DFS":
     print("Searching the path using Depth-First Search...")
