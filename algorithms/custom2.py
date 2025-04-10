@@ -5,6 +5,7 @@ def custom_search_2(problem):
     graph = problem.graph
     start = problem.origin
     goals = problem.destinations
+    
 
     def rbfs(node, path, g, f_limit):
         if node in goals: 
