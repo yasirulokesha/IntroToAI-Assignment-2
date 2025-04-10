@@ -5,6 +5,14 @@ def dfs(problem):
     graph = problem.graph
     start = problem.origin
     goals = problem.destinations
+    
+    # Convert types to string for consistent comparison
+    start_str = str(start)
+    goals_str = {str(goal) for goal in goals}
+    
+    # Check if the start node is already a goal
+    if start_str in goals_str:
+        return [start], start  # Return path and the goal node found
 
     stack = [(start, [start], 0)]  # (current_node, path, cost)
     visited = set()

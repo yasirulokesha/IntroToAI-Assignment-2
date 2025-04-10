@@ -5,6 +5,14 @@ def a_star(problem):
     graph = problem.graph
     start = problem.origin
     goals = problem.destinations
+    
+     # Convert types to string for consistent comparison
+    start_str = str(start)
+    goals_str = {str(goal) for goal in goals}
+    
+    # Check if the start node is already a goal
+    if start_str in goals_str:
+        return [start], start  # Return path and the goal node found
 
     # Priority queue: (f, g, node, path)
     priority_queue = [(0, 0, start, [start])]  # (f, g, node, path)
@@ -23,13 +31,11 @@ def a_star(problem):
             neighbors = sorted(graph.edges[node], key=lambda x: x[0])  # Sort by node ID
             for neighbor, edge_cost in neighbors:
                 new_g = g + edge_cost  # Actual cost
-                # h = min(euclidean_distance(neighbor, goal, graph) for goal in goals)  # Heuristic
                 h = min(
                     graph.nodes[neighbor].distance_to(graph.nodes[goal]) for goal in goals
                 )
-                # print(graph.nodes[neighbor].distance_to(graph.nodes[goal])  for goal in goals)
-                # f = new_g + h  # Total cost
+                new_f = new_g + h  # Calculate the new f-score
 
-                heapq.heappush(priority_queue, (f, new_g, neighbor, path + [neighbor]))
+                heapq.heappush(priority_queue, (new_f, new_g, neighbor, path + [neighbor]))
 
     return None, float("inf")  # No path found

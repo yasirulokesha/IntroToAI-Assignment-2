@@ -25,6 +25,8 @@ try:
 except Exception as e:
     print(f"Error parsing problem file: {e}")
     sys.exit(1)
+    
+
 
 # Choose the appropriate search algorithm
 if method == "DFS":
@@ -56,7 +58,7 @@ else:
     print("Available methods: DFS, BFS, GBFS, AS, CUS1, CUS2")
     if len(sys.argv) != 3:
         print("Usage: python search.py <filename> <method>")
-        sys.exit(1)
+    sys.exit(1)
 
 # Print the result in the required format
 if goal_node:

@@ -1,0 +1,32 @@
+test cases results:
+test case 0 -> no origin
+Produces ERROR
+
+test case 1 -> mulitple origins
+Produces ERROR
+
+test case 2 -> no destinations
+Produces ERROR
+
+test case 3 -> lots of destinations
+Handles Appropriately
+
+test case 4 -> origin is a destination
+PROBLEM -> A* search doesnt work properly; DFS doesnt work properly
+
+test case 5 -> missing edges
+Produces ERROR
+
+test case 6 -> missing nodes
+Produces ERROR
+
+test case 7 -> all costs are 0
+PROBLEM -> A* search doesnt work properly; DFS doesnt work properly
+
+test case 8 -> circular paths
+Handles Appropriately
+
+test case 9 -> multiple paths to same destination with different costs
+Handles Appropriately
+
+
