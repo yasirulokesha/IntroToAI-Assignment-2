@@ -1,6 +1,3 @@
-import sys
-
-# Performs Depth-First Search (DFS) with tie-breaking rules.
 def dfs(problem):
     graph = problem.graph
     start = problem.origin
@@ -12,16 +9,22 @@ def dfs(problem):
     
     # Check if the start node is already a goal
     if start_str in goals_str:
-        return [start], start  # Return path and the goal node found
+        for goal in goals:
+            if str(goal) == start_str:
+                return [start], goal
 
-    stack = [(start, [start], 0)]  # (current_node, path, cost)
+    stack = [(start, [start])]  # (current_node, path)
     visited = set()
 
     while stack:
-        node, path, cost = stack.pop()  # LIFO order (Depth-First)
-
-        if node in goals:
-            return path, cost  # Found a goal, return the path and cost
+        node, path = stack.pop()  # LIFO order (Depth-First)
+        
+        # Check if current node is a goal
+        node_str = str(node)
+        if node_str in goals_str:
+            for goal in goals:
+                if str(goal) == node_str:
+                    return path, goal
 
         if node not in visited:
             visited.add(node)
@@ -29,8 +32,8 @@ def dfs(problem):
             # Get neighbors, sort them in ascending order before adding to stack
             neighbors = sorted(graph.edges[node], key=lambda x: x[0])  # Sort by node ID
             
-            for neighbor, edge_cost in reversed(neighbors):  # Reverse to maintain DFS LIFO order
+            for neighbor, _ in reversed(neighbors):  # Reverse to maintain DFS LIFO order
                 if neighbor not in visited:
-                    stack.append((neighbor, path + [neighbor], cost + edge_cost))
+                    stack.append((neighbor, path + [neighbor]))
 
-    return None, float("inf")  # No path found
+    return None, None  # No path found
