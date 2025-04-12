@@ -14,7 +14,7 @@ def a_star(problem):
         f, g, node, path = heapq.heappop(priority_queue)  # Expand lowest-cost node
 
         if node in goals:
-            return path, g  # Goal reached, return path and cost
+            return path, node  # Goal reached, return path and cost
 
         if node not in visited or g < visited[node]:
             visited[node] = g  # Store the best known cost

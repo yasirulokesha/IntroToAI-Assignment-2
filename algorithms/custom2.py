@@ -24,7 +24,7 @@ def cus2(problem):
         # Forward search step
         f_f, g_f, node_f, path_f = heapq.heappop(forward_queue)
         if node_f in backward_visited:
-            return path_f + backward_visited[node_f][::-1][1:], g_f  # Merge paths
+            return path_f + backward_visited[node_f][::-1][1:], path_f[::-1][0]  # Merge paths
 
         if node_f not in forward_visited or g_f < forward_visited[node_f]:
             forward_visited[node_f] = path_f
@@ -38,7 +38,7 @@ def cus2(problem):
         # Backward search step
         f_b, g_b, node_b, path_b = heapq.heappop(backward_queue)
         if node_b in forward_visited:
-            return forward_visited[node_b] + path_b[::-1][1:], g_b  # Merge paths
+            return forward_visited[node_b] + path_b[::-1][1:], path_b[::-1][-1]  # Merge paths
 
         if node_b not in backward_visited or g_b < backward_visited[node_b]:
             backward_visited[node_b] = path_b

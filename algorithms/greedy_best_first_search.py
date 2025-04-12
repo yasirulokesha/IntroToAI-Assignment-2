@@ -14,7 +14,7 @@ def gbfs(problem):
         h, node, path = heapq.heappop(priority_queue)  # Expand lowest heuristic value
 
         if node in goals:
-            return path, len(path)  # Goal reached, return path and number of nodes visited
+            return path, node  # Goal reached, return path and number of nodes visited
 
         if node not in visited:
             visited.add(node)

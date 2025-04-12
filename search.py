@@ -51,6 +51,7 @@ elif method == "CUS1":
 elif method == "CUS2":
     print("Searching the path using Custom 2 (Recursive Best First Search) Search...")
     path, goal_node = cus2(problem)
+    goal_node = str(goal_node).strip("[]").strip("''") 
     
 else:
     print(f"Unknown method: {method}")

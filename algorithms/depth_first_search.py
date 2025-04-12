@@ -13,7 +13,7 @@ def dfs(problem):
         node, path, cost = stack.pop()  # LIFO order (Depth-First)
 
         if node in goals:
-            return path, cost  # Found a goal, return the path and cost
+            return path, node  # Found a goal, return the path and cost
 
         if node not in visited:
             visited.add(node)

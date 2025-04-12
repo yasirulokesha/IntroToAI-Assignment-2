@@ -16,7 +16,7 @@ def cus1(problem):
         cost, node, path = heapq.heappop(priority_queue)  # Expand lowest-cost node
 
         if node in goals:
-            return path, cost  # Goal reached, return path and cost
+            return path, node  # Goal reached, return path and cost
 
         if node not in visited or cost < visited[node]:
             visited[node] = cost  # Store the best known cost
