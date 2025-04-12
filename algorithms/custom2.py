@@ -3,20 +3,14 @@ import heapq
 import math
 from graph import Graph
 
-def euclidean_distance(node1, node2, graph):
-    """Computes Euclidean distance between two nodes."""
-    x1, y1 = graph.nodes[node1]
-    x2, y2 = graph.nodes[node2]
-    return math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
-
-def bi_directional_a_star(problem):
+def cus2(problem):
     """Performs Bi-Directional A* Search with tie-breaking rules."""
     graph = problem.graph
     start = problem.origin
     goals = problem.destinations
 
     # Choose the closest goal as the search target
-    target = min(goals, key=lambda goal: euclidean_distance(start, goal, graph) )
+    target = min(goals, key=lambda goal: graph.nodes[start].distance_to(graph.nodes[goal]))
 
     # Priority queues for forward and backward search: (f, g, node, path)
     forward_queue = [(0, 0, start, [start])]
@@ -37,7 +31,7 @@ def bi_directional_a_star(problem):
             neighbors = sorted(graph.edges[node_f], key=lambda x: x[0])  # Sort nodes
             for neighbor, edge_cost in neighbors:
                 new_g = g_f + edge_cost
-                h = euclidean_distance(neighbor, target, graph)
+                h = graph.nodes[neighbor].distance_to(graph.nodes[target])
                 f = new_g + h
                 heapq.heappush(forward_queue, (f, new_g, neighbor, path_f + [neighbor]))
 
@@ -51,7 +45,7 @@ def bi_directional_a_star(problem):
             neighbors = sorted(graph.edges[node_b], key=lambda x: x[0])  # Sort nodes
             for neighbor, edge_cost in neighbors:
                 new_g = g_b + edge_cost
-                h = euclidean_distance(neighbor, start, graph)
+                h = graph.nodes[neighbor].distance_to(graph.nodes[start])
                 f = new_g + h
                 heapq.heappush(backward_queue, (f, new_g, neighbor, path_b + [neighbor]))
 
