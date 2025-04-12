@@ -12,7 +12,7 @@ test case 3 -> lots of destinations
 Handles Appropriately
 
 test case 4 -> origin is a destination
-Handles Appropriately
+PROBLEM -> A* search doesnt work properly; DFS doesnt work properly
 
 test case 5 -> missing edges
 Produces ERROR - Handles Appropriately

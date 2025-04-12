@@ -3,7 +3,7 @@ import sys
 import heapq
 from graph import Graph
 
-def ucs(problem):
+def cus1(problem):
     """Performs Uniform Cost Search (UCS) with tie-breaking rules."""
     graph = problem.graph
     start = problem.origin
