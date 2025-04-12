@@ -1,7 +1,7 @@
-
 import sys
 import heapq
 from graph import Graph
+from read_file import read_file  # Import function to parse input files
 
 def cus1(problem):
     """Performs Uniform Cost Search (UCS) with tie-breaking rules."""
