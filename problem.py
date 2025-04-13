@@ -39,6 +39,16 @@ def read_file(filename):
         elif current_section:
             section_content.append(line)
     
+    # Check if any required section is missing
+    missing_sections = []
+    for section in section_names:
+        if section not in sections and section not in current_section:
+            missing_sections.append(section)
+            
+    if missing_sections:
+        print(f"Error: Missing sections: {', '.join(missing_sections)}")
+        exit(1)  # exit with error code 1
+    
     # Add the last section
     if current_section and section_content:
         sections[current_section] = '\n'.join(section_content)
