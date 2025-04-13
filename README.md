@@ -33,7 +33,8 @@ Supports batch testing via the command line
 - Edges: are directional and include traversal costs
 - Origin: defines the starting node
 - Destinations: defines one or more goal nodes (separated by `;`)
-```# Tree-Based Search Algorithms for Route Finding
+```
+# Tree-Based Search Algorithms for Route Finding
 
 ## Introduction
 
