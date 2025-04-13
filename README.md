@@ -29,10 +29,10 @@ Supports batch testing via the command line
 - Python 3.8 or higher
 - Graph data in the format of a text file with the following structure:
 ```
-Nodes: are defined with their coordinates `(x, y)`
-Edges: are directional and include traversal costs
-Origin: defines the starting node
-Destinations: defines one or more goal nodes (separated by `;`)
+- Nodes: are defined with their coordinates `(x, y)`
+- Edges: are directional and include traversal costs
+- Origin: defines the starting node
+- Destinations: defines one or more goal nodes (separated by `;`)
 ```
 
 ## Outputs Results 
@@ -76,14 +76,6 @@ Destinations:
 ### Clone this repository:
 ```
 git clone https://github.com/](https://github.com/yasirulokesha/IntroToAI-Assignment-2.git
-cd IntroToAI-Assignment-2
-```
-
-Ensure Python is installed (if using Python).
-
-Install required dependencies if any:
-```
-pip install -r requirements.txt
 ```
 
 ## Usage
@@ -96,18 +88,21 @@ python search.py <filename> <method>
 
 Where:
 
-<filename> is the path to the input file
+`<filename>` is the path to the input file
 
-<method> is one of DFS, BFS, GBFS, A*, CUS1, or CUS2
+`<method>` is one of DFS, BFS, GBFS, A*, CUS1, or CUS2
 
 ## Example
-
-python search.py input.txt A*
+Executable file is provided in the repository. You can run it from the terminal using the following command:
+```
+python search.py <filename> <method>
+```
 
 Output Format
 ```
 <filename> <method>
-<goal> <number_of_nodes>
+<goal> 
+<number_of_nodes>
 <path>
 ```
 Example:
@@ -119,7 +114,7 @@ input.txt A*
 
 ## Testing
 
-At least 10 test cases have been created to cover different scenarios. To run tests:
+There has 10 test cases have been created to cover different scenarios. To run tests:
 ```
 python search.py tests/<filename> <method>
 ```
