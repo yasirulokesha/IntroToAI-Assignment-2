@@ -76,6 +76,9 @@ def read_file(filename):
     origin = None
     if "Origin:" in sections:
         origin_text = sections["Origin:"].strip()
+        if len(origin_text) > 1 :
+            print("Origin has more than one origin!")
+            exit(2)
         if origin_text:
             origin = origin_text
     

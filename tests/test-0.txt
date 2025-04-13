@@ -22,9 +22,6 @@ Edges:
 (6,3): 7
 (3,6): 7
 
-Origin:
-4
-
 Destinations:
 5; 4
 
