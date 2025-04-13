@@ -16,15 +16,37 @@ Implemented search algorithms:
 
 - A*Search (A*)
 
-- Custom Uninformed Search (CUS1)
+- Custom Uninformed Search (CUS1 - Uniformed Cost Search)
 
-- Custom Informed Search (CUS2)
+- Custom Informed Search (CUS2 - Bi-Directional A* Search )
 
 Reads graph data from structured text files
 
 Supports batch testing via the command line
 
-## Outputs results in a standard format
+## Getting Started
+### Prerequisites
+- Python 3.8 or higher
+- Graph data in the format of a text file with the following structure:
+```
+Nodes: are defined with their coordinates `(x, y)`
+Edges: are directional and include traversal costs
+Origin: defines the starting node
+Destinations: defines one or more goal nodes (separated by `;`)
+```
+
+## Outputs Results 
+
+- Expected output
+```
+Searching the path using Custom 2 (Recursive Best First Search) Search...
+PathFinder-test.txt CUS2
+
+********* Search Results *********
+Found Goal:      None
+Node Visited:    1
+Path:            4
+```
 
 ## File Format
 
@@ -99,7 +121,7 @@ input.txt A*
 
 At least 10 test cases have been created to cover different scenarios. To run tests:
 ```
-python test_search.py
+python search.py tests/<filename> <method>
 ```
 
 ## Insights & Research
