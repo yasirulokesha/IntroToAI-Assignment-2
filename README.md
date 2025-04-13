@@ -62,7 +62,7 @@ Destinations:
 
 ### Clone this repository:
 ```
-git clone https://github.com/](https://github.com/yasirulokesha/IntroToAI-Assignment-2.git
+git clone https://github.com/yasirulokesha/IntroToAI-Assignment-2.git
 ```
 
 ## Usage
